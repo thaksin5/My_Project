@@ -7,7 +7,7 @@
 class ToyFactory{
     public:
         static Toy *createToy(int type){
-            Toy *toy;
+            Toy *toy; // can return because inside static function
             switch(type){
                 case 1 :
                     toy = new Car;
