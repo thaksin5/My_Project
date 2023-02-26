@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+// new version is avoid memory leak and thread safe(c++11)
 class GameSetting{
     private:
         int _width;

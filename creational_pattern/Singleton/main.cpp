@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 
+// The old one does not destroy obj will cause mamory leak
 class GameSetting{
     private:
         static GameSetting *_instance;
@@ -9,6 +10,7 @@ class GameSetting{
         int _height;
         GameSetting(): _width(786), _height(1300), _brightness(75){}
     public:
+
         static GameSetting *getInstance(){
             if(_instance == NULL){
                 _instance = new GameSetting();
