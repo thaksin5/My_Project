@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
 
-// The old one does not destroy obj will cause mamory leak
+// The old way
+// does not destroy obj will cause mamory leak
 class GameSetting{
     private:
         static GameSetting *_instance;
