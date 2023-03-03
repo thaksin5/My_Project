@@ -1,18 +1,21 @@
-.PHONY: directories clean stat
+SRC=directories 
+EXE=bin/ut_all
+COVR=-lgtest -pthread --coverage -fkeep-inline-functions -fno-inline -fno-inline-small-functions -fno-default-inline -g -O0
+CLEAR= bin *.gcov *.gcda *.gcno *.html *.css
+LEAKCHECK=--leak-check=full --error-exitcode=2 --track-origins=yes
+all: $(SRC) $(EXE)
 
-all: directories bin/ut_all
-
-bin/ut_all: test/ut_main.cpp
-	g++ test/ut_main.cpp -o bin/ut_all -lgtest -pthread --coverage -fkeep-inline-functions -fno-inline -fno-inline-small-functions -fno-default-inline -g -O0
+$(EXE): test/ut_main.cpp
+	g++ test/ut_main.cpp -o $(EXE) $(COVR)
 
 directories:
 	mkdir -p bin
 
 clean:
-	rm -rf bin *.gcov *.gcda *.gcno *.html *.css
+	rm -rf $(CLEAR)
 
 valgrind:
-	valgrind --leak-check=full --error-exitcode=2 --track-origins=yes ./bin/ut_all
+	valgrind $(LEAKCHECK) $(EXE)
 
 stat:
 	wc src/* test/*
